@@ -1,0 +1,34 @@
+#ifndef TEST_H
+#define TEST_H
+
+#include "ratetransfer.h"
+
+#include <QFile>
+#include <QObject>
+
+class Test : public QObject
+{
+    Q_OBJECT
+
+public:
+
+    explicit Test(QObject *parent = 0);
+    ~Test();
+
+    void doTest();
+
+private:
+
+    QFile m_source;
+    QFile m_destination;
+    RateTransfer m_transfer;
+
+public slots:
+
+    void started();
+    void transfered(int bytes);
+    void finished();
+    void error();
+};
+
+#endif // TEST_H
